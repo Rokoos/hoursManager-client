@@ -5,20 +5,13 @@ import Routes from './routes'
 import { isAuthenticated, killToken, fetchUser } from './components/Auth'
 import { fetchAdmin } from './components/Admin'
 import { loggedIn} from './actions'
-
-
-// import Spinner from './components/Spinner'
-
-
 import "./index.css"
-import { useState } from 'react'
 
 
 
 
 const App = () => {
 
-  // const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
 

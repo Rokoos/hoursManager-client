@@ -15,7 +15,7 @@ const SignUp = ({history}) => {
 
   const dispatch = useDispatch()
   const {register, user} = useSelector(state => ({...state}) )
-
+  const [status, setStatus] = useState('')
   const [name, setName] = useState('')
   const [companies, setCompanies] = useState([])
   const [company, setCompany] = useState('')
@@ -72,7 +72,7 @@ const SignUp = ({history}) => {
 }
 
 const renderBossOrEmployeeForm = () => {
-  if(register.chooseRegister === "admin"){
+  if(status === 'admin' && register.chooseRegister === "admin"){
     return (
        <MDBInput
         onChange={e => setCompany(e.target.value)}          value={company}
@@ -133,7 +133,10 @@ const renderForm = () => (
 )
 
 const chooseCompanyOrUser = () => (
-  <select onClick={e => dispatch(chooseRegister(e.target.value))} className="form-select" aria-label="Default select example">
+  <select onClick={e => {
+    setStatus(e.target.value)
+    dispatch(chooseRegister(e.target.value))
+  }} className="form-select" aria-label="Default select example">
       <option value=''>Wybierz opcję</option>
         <option value='admin'>Jestem Pracodawcą</option>
         <option value='user'>Jestem Pracownikiem</option>

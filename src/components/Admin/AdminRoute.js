@@ -1,18 +1,18 @@
 import React from 'react'
-import { Route, Redirect} from 'react-router-dom'
+import { Route} from 'react-router-dom'
 import { useSelector} from 'react-redux'
+import LoadingToRedirect from '../Auth/LoadingToRedirect'
 
 
 
 const AdminRoute = ({component: Component, ...rest}) => {
 
   const user = useSelector(state => state.user)
-  // console.log('isAuthencticated', isAuthenticated().token )
   return(
       <Route {...rest} render={props => (user && user.role === 'admin') ? (
           <Component {...props} />
          ) : (
-             <Redirect to='/'/>
+             <LoadingToRedirect/>
          )} />
   )
 }
