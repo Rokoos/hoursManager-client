@@ -218,7 +218,7 @@ if(loading){
         onClick={() => setAddHours(true)}
         className="btn btn-primary mb-5">Dodaj godziny</button>
         {addHours && (
-          <div style={{fontSize: '13px'}} className=" d-flex flex-column  justify-content-center align-items-center mb-3">
+          <div style={{fontSize: '13px'}} className=" d-flex flex-column  justify-content-center align-items-center mb-5">
           <h5 className='p-2 bg-dark header-main_color'  >Kliknij numer tygodnia</h5>
           <Calendar
           onChange={onChange}
