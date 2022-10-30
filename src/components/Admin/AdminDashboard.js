@@ -17,11 +17,11 @@ const AdminDashboard = () => {
     fetchUsers(user._id, user.token)
   .then(data => {
     if(data.error){
-      // setLoading(false)
+      setLoading(false)
       toast.error('Brak dostępu. Zaloguj się ponownie.')
     }else{
       setUsers(data)
-      // setLoading(false)
+      setLoading(false)
 }
 })
   }, [user._id, user.token])
