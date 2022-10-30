@@ -42,7 +42,7 @@ const getMonthName = (monthNumber) => {
       <h3 className='bg-dark header-main_color p-2 rounded' >{` ${getMonthName(month).toUpperCase()}`}</h3>
       <div className="ignac">
       {singleMonth && sortDays(singleMonth).map(el => 
-        <div key={el[0]} className=' d-flex align-items-center justify-content-between px-4'>
+        <div key={el[0]} className=' d-flex align-items-center justify-content-between px-2'>
           <span >{`${el[0]}`}</span>
           <span  style={{fontWeight:'bold'}}>{`${el[1]} h`}</span>
         </div>
