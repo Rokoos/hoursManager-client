@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn} from 'mdbreact';
 import {toast} from 'react-toastify'
-import { signin, saveUserInLS, isAuthenticated, killToken } from './index'
+import { signin, saveUserInLS, killToken } from './index'
 import { roleBasedRedirect } from '../Auth'
 import { login} from '../../actions'
 import Spinner from '../Spinner'
@@ -65,7 +65,7 @@ const SignIn = ({history}) => {
     return <Redirect to='/admin/dashboard' />
   }
   if(user && user.role === 'user'){
-    return <Redirect to={`/user/${isAuthenticated()._id}`} />
+    return <Redirect to={`/user/${user._id}`} />
   }
 
   return (

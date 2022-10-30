@@ -202,7 +202,7 @@ if(loading){
 }
   return (
     <Fragment>
-      <div className='container text-center' style={{marginTop: "100px"}}>
+      <div className='container text-center large-margin' >
         <h3>{user.userName}</h3>
         
         

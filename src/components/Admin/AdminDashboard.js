@@ -35,7 +35,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className='container text-center' style={{marginTop: '200px'}}>
+    <div className='container text-center large-margin' >
       {!user.token || loading ? <Spinner/> : (
         <Fragment>
         <h3 className='rounded text-center bg-dark header-main_color p-2 mb-4'  >{user.companyName}</h3>
