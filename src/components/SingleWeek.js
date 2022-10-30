@@ -28,9 +28,9 @@ const SingleWeek = ({el}) => {
       ))}
       <h5 className='mt-2 bg-dark header-main_color rounded  p-2'>{`Ilość godzin: ${getTotal()}`}</h5>
       {description && (
-        <div>
+        <div >
         <h5>Uwagi:</h5>
-        <p>{description}</p>
+        <p style={{wordWrap: "break-word"}}>{description}</p>
         </div>
       )}
       </div>
