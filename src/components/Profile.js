@@ -72,18 +72,21 @@ const onSavingData = () => {
       if(res.error) {
         toast.error(res.error)
         setLoading(false)
+      }else{
+        toast.success(`Pomyślnie dodano godziny dla ${week} tygodnia ${year} roku.`)
+        setLoading(false)
+        setAddHours(false)
+        setValues([])
+        setWeek(null)
+        setDescription('')
+        setYears(res.unique)
       }
 
-      toast.success(`Pomyślnie dodano godziny dla ${week} tygodnia ${year} roku.`)
-      setLoading(false)
-      setAddHours(false)
-      setValues([])
-      setWeek(null)
-      setDescription('')
-      setYears(res.data.unique)
+      
     })
     .catch(error=> {
-      toast.error(error.response.data.error)
+      console.log('error', error)
+      // toast.error(error.response.data.error)
     })
   
 }
@@ -203,7 +206,7 @@ if(loading){
         <h3>{user.userName}</h3>
         
         
-        {(years.length > 0) && (
+        {(years && years.length > 0) && (
           <Fragment>
           <hr/>
           <h5>Moje godziny</h5>

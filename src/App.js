@@ -7,7 +7,7 @@ import { fetchAdmin } from './components/Admin'
 import { loggedIn} from './actions'
 
 
-import Spinner from './components/Spinner'
+// import Spinner from './components/Spinner'
 
 
 import "./index.css"
@@ -18,7 +18,7 @@ import { useState } from 'react'
 
 const App = () => {
 
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -29,11 +29,11 @@ const App = () => {
   const loadUser = useCallback(() => {
 
     if(isAuthenticated() && isAuthenticated().role === 'user'){
-      setLoading(true)
+      // setLoading(true)
       fetchUser(userId, token)
       .then(data => {
         if(data.error){
-            setLoading(false)
+            // setLoading(false)
             killToken()
         }else{
             dispatch(loggedIn({
@@ -46,17 +46,17 @@ const App = () => {
               token,
               years: data.unique
             }))
-            setLoading(false)
+            // setLoading(false)
         }
     })
     }
 
     if(isAuthenticated() && isAuthenticated().role === 'admin'){
-      setLoading(true)
+      // setLoading(true)
       fetchAdmin(userId, token)
       .then(data => {
         if(data.error){
-            setLoading(false)
+            // setLoading(false)
             killToken()
         }else{
           dispatch(loggedIn({
@@ -69,7 +69,7 @@ const App = () => {
             token,
             years: data.unique
           }))
-          setLoading(false)
+          // setLoading(false)
         }
       })
     }
@@ -82,9 +82,9 @@ const App = () => {
       loadUser()
     }, [ loadUser])
 
-  if(loading){
-    return <Spinner/>
-  }
+  // if(loading){
+  //   return <Spinner/>
+  // }
 
   return (
     <BrowserRouter>

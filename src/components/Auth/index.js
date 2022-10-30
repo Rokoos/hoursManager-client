@@ -1,12 +1,18 @@
-import axios from 'axios'
 
 
-
-export  const handleHours = async (userId,token, data) => await axios.post(`${process.env.REACT_APP_API}/user/${userId}/addHours`, data, {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
+export const handleHours = (userId,token, data) => {
+    return  fetch(`${process.env.REACT_APP_API}/user/${userId}/addHours`, {
+        method: 'POST',
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        return response.json()
+    }).catch(err =>console.log(err))
+}
 
 
 ////////////////////////////////////////////////////////
@@ -70,18 +76,49 @@ export  const fetchUser = (userId, token) => {
 
 
 
-export  const getWeeks = async (userId,token, year) => await axios.get(`${process.env.REACT_APP_API}/user/${userId}/${year}`, {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
+// export  const getWeeks = async (userId,token, year) => await axios.get(`${process.env.REACT_APP_API}/user/${userId}/${year}`, {
+//     headers: {
+//         Authorization: `Bearer ${token}`
+//     }
+// })
 
-export const getMonth = async (userId, token,year, month) => await
-axios.get(`${process.env.REACT_APP_API}/user/${userId}/${year}/${month}`, {
-    headers: {
-        Authorization: `Bearer ${token}`
-    }
-})
+export  const getWeeks = (userId, token, year) => {
+    return fetch(`${process.env.REACT_APP_API}/user/${userId}/${year}`, {
+       method: 'GET',
+       headers: {
+           Accept: "application/json",
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`
+       },
+
+   })
+   .then(response => {
+       return response.json()
+   }) 
+}
+
+// export const getMonth = async (userId, token,year, month) => await
+// axios.get(`${process.env.REACT_APP_API}/user/${userId}/${year}/${month}`, {
+//     headers: {
+//         Authorization: `Bearer ${token}`
+//     }
+// })
+
+
+export  const getMonth = (userId, token, year, month) => {
+    return fetch(`${process.env.REACT_APP_API}/user/${userId}/${year}/${month}`, {
+       method: 'GET',
+       headers: {
+           Accept: "application/json",
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${token}`
+       },
+
+   })
+   .then(response => {
+       return response.json()
+   }) 
+}
 
 
 

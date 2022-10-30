@@ -1,7 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import { useSelector } from 'react-redux'
 import Modal from './Modal'
-import Spinner  from './Spinner'
 import { getMonth} from '../components/Auth'
 import {sortDays} from '../utils'
 
@@ -13,22 +12,18 @@ const SingleMonth = ({month, userId, year}) => {
   const [modal, setModal] = useState(false)
   const [singleMonth, setSingleMonth] = useState(null)
   const [totalHours, setTotalHours] = useState(null)
-  const [loading, setLoading] = useState(false)
 
   const toggle = () => setModal(!modal)
 
   const loadMonth = () => {
-    setLoading(true)
     getMonth(userId, token, year, month)
     .then(res => {
       if(res.error) {
         console.log('res.error', res.error)
-        setLoading(false)
       }
   
-      setSingleMonth(res.data.month)
-      setTotalHours(res.data.total)
-      setLoading(false)
+      setSingleMonth(res.month)
+      setTotalHours(res.total)
     })
     .catch(error=> {
       console.log('error', error)
@@ -61,16 +56,16 @@ const getMonthName = (monthNumber) => {
 
   return (
    <Fragment>
-   <div onClick={() => {
-    toggle()
-    loadMonth()
-   }}  className="btn yellow-btn font-weight-bold" style={{minWidth:'100px'}}  >
-   {month}
- </div>
+    <div onClick={() => {
+        toggle()
+        loadMonth()
+      }}  className="btn yellow-btn font-weight-bold" style={{minWidth:'100px'}}  >
+      {month}
+    </div>
 
- <Modal
-     toggle={toggle} modal={modal}>
-     {loading ? <Spinner/> :renderMonth()}
+    <Modal
+      toggle={toggle} modal={modal}>
+      {singleMonth && renderMonth()}
      </Modal> 
    </Fragment>
   )

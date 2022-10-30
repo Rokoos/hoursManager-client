@@ -27,8 +27,8 @@ const Year = ({match}) => {
         console.log('res.error', res.error)
         setLoading(false)
       }
-      setWeeks(res.data.weeks)
-      setMonths(res.data.uniqueMonths)
+      setWeeks(res.weeks)
+      setMonths(res.uniqueMonths)
       setLoading(false)
     })
     .catch(error=> {

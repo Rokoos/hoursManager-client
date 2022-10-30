@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import { withRouter, Link } from 'react-router-dom'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { chooseRegister, logout } from '../../actions'
 import { signout, isAuthenticated , killToken} from '../Auth'
 import styled from 'styled-components';
@@ -40,6 +40,7 @@ const Ul = styled.ul`
 const RightNav = ({ open, toggle, history }) => {
 
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
   // const user = useSelector(state => state.user)
 
     const toggleNavBar = () => {
@@ -58,7 +59,7 @@ const RightNav = ({ open, toggle, history }) => {
     }
 
     const renderOptions = () => {
-      if(!isAuthenticated()){
+      if(!user.token){
         return (
         <div className="nav_link">
           <li
@@ -104,7 +105,7 @@ const RightNav = ({ open, toggle, history }) => {
     <Ul open={open}>
        <div className="nav_link">
        
-       {isAuthenticated().role === 'admin' && (
+       {user.role === 'admin' && (
           <li 
         className={isActive(history, "/admin/dashboard")}
         onClick={toggleNavBar}
@@ -115,7 +116,7 @@ const RightNav = ({ open, toggle, history }) => {
         
        )}
 
-       {isAuthenticated().role === 'user' && (
+       {user.role === 'user' && (
        
         <li 
         className={isActive(history, `/user/${isAuthenticated()._id}`)}

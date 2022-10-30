@@ -3,7 +3,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBBtn} from 'mdbreact';
 import {toast} from 'react-toastify'
-import { signin, saveUserInLS, isAuthenticated } from './index'
+import { signin, saveUserInLS, isAuthenticated, killToken } from './index'
 import { roleBasedRedirect } from '../Auth'
 import { login} from '../../actions'
 import Spinner from '../Spinner'
@@ -29,8 +29,10 @@ const SignIn = ({history}) => {
       signin(loginData)
       .then(res => {
         if(res.error) {
+          // console.log('res', res.error)
           toast.error(res.error)
           setLoading(false)
+          killToken()
         }
 
         const userData = {
