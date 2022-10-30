@@ -26,7 +26,6 @@ const SingleMonth = ({month, userId, year}) => {
         setLoading(false)
       }
   
-      console.log('response', res.data.month)
       setSingleMonth(res.data.month)
       setTotalHours(res.data.total)
       setLoading(false)
