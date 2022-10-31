@@ -41,7 +41,6 @@ const RightNav = ({ open, toggle, history }) => {
 
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  // const user = useSelector(state => state.user)
 
     const toggleNavBar = () => {
         toggle(open)
@@ -102,6 +101,7 @@ const RightNav = ({ open, toggle, history }) => {
     }
   return (
     <Fragment>
+    
     <Ul open={open}>
        <div className="nav_link">
        

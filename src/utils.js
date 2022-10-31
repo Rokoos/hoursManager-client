@@ -62,22 +62,6 @@ export const sortMonths = (months) => {
 }
 
 export const sortDays = (month) => {
-
-  // const witek = [
-
-  //   ['pon., 14.10', 0],
-  //   ['wt., 15.10', 7],
-  //   ['śr., 16.10', 6],
-  
-  // ['pon., 20.10', 0],
-  // ['wt., 21.10', 7],
-  // ['śr., 22.10', 6],
-  // ['czw., 1.10', 8],
-  // ['pon., 30.10', 0],
-  // ['wt., 31.10', 7],
-  // ['śr., 2.10', 6],
-  
-  // ]
   return month.sort((a,b) => {
     if(Number(a[0].substring(a[0].length - 5, a[0].length - 2)) < Number(b[0].substring(b[0].length - 5, b[0].length - 2))){
       return -1
@@ -89,26 +73,8 @@ export const sortDays = (month) => {
   })
 }
 
+export const getName = month => {
+  const months = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień']
 
-// export const getWeekData = ( values) => {
-//   let obj = {}
-
-//   values.forEach(val => obj[val[0]] = val[1])
-//   return obj
-// } 
-
-
-// export const checkUser = (userData) => {
-//   if(typeof window == 'undefined'){
-//       return false
-//   }
-
-//   const user = JSON.parse(localStorage.getItem('u'))
-
-//   if(!user){
-//     localStorage.setItem("u", JSON.stringify(userData))
-//   }else{
-//       return user
-//   }
-
-// }
+  return months[month - 1]
+}

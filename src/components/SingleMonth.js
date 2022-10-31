@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react'
 import { useSelector } from 'react-redux'
 import Modal from './Modal'
 import { getMonth} from '../components/Auth'
-import {sortDays} from '../utils'
+import {sortDays, getName} from '../utils'
 
 
 const SingleMonth = ({month, userId, year}) => {
@@ -29,17 +29,12 @@ const SingleMonth = ({month, userId, year}) => {
       console.log('error', error)
     })
   }
-  
-const getMonthName = (monthNumber) => {
-  const date = new Date();
-  date.setMonth(monthNumber - 1);
-  return date.toLocaleString('pl-PL', { month: 'long' });
-}
 
+  
 
   const renderMonth = () => (
     <div className=" p-3">
-      <h3 className='bg-dark header-main_color p-2 rounded' >{` ${getMonthName(month).toUpperCase()}`}</h3>
+      <h3 className='bg-dark header-main_color p-2 rounded' >{` ${getName(month).toUpperCase()}`}</h3>
       <div className="ignac">
       {singleMonth && sortDays(singleMonth).map(el => 
         <div key={el[0]} className=' d-flex align-items-center justify-content-between px-2'>
