@@ -1,14 +1,18 @@
 import { useEffect, useCallback, useState, Fragment } from 'react'
 import { useSelector } from 'react-redux'
-import { getEmployee, getEmployeeWeeksAndMonths } from './index'
+import { 
+  getEmployee, 
+  getEmployeeWeeksAndMonths, 
+  deleteUserByAdmin } from './index'
 import { sortWeeks, sortMonths} from '../../utils'
 import SingleMonth from '../SingleMonth'
 import SingleWeek from '../SingleWeek'
 import Spinner from '../Spinner'
+import { toast } from 'react-toastify'
+import Modal from '../Modal'
 
-const EmployeePage = ({match}) => {
+const EmployeePage = ({match, history}) => {
   const id = match.params.userId
-
   const [employee, setEmployee] = useState({})
   const [years, setYears] = useState([])
   const [year, setYear] = useState(null)
@@ -16,6 +20,9 @@ const EmployeePage = ({match}) => {
   const [months, setMonths] = useState([])
   const [text, setText] = useState('weeks')
   const [loading, setLoading] = useState(false)
+  const [modal, setModal] = useState(false)
+  
+  const toggle = () => setModal(!modal)
 
   const user = useSelector(state => state.user)
   const userId = user._id
@@ -96,6 +103,24 @@ const handleWeeks = year => {
     }
   }
 
+  const removeByAdmin = () => {
+    setLoading(true)
+    deleteUserByAdmin(userId, token, id)
+    .then(res => {
+      if(res.error) {
+        setLoading(false)
+        console.log(res.error)
+      }
+      setLoading(false)
+      toast.success(`Pomyślnie usunięto konto ${employee.userName}.`)
+      history.push('/admin/dashboard')
+    })
+    .catch(error=> {
+      console.log(error)
+      setLoading(false)
+    })
+  }
+
   
 
   if(loading){
@@ -105,7 +130,6 @@ const handleWeeks = year => {
   return (
     <div className='container text-center' style={{marginTop: '180px'}}>
       <h4>{employee.userName}</h4>
-      <h5 className='mb-4'>{employee.email}</h5>
       {renderYears()}
       {year && (
         <Fragment>
@@ -113,8 +137,25 @@ const handleWeeks = year => {
           {showText()}
           <h6>{text === 'weeks' ? 'Dodane tygodnie ' : 'Miesiące '}</h6>
           {renderWeeksOrMonths()}
+          <hr />
+          
         </Fragment>
       )}
+      <button onClick={toggle} className="btn btn-danger">usuń konto</button>
+
+      <Modal
+        toggle={toggle} modal={modal}>
+        <div className='p-4 text-center'>
+          <h5>{`Czy na pewno chcesz usunąć konto ${employee.userName}?`}</h5>
+          <div >
+            <button onClick={() => {
+              toggle()
+              removeByAdmin()
+            }} className="btn btn-danger">Usuń</button>
+            <button onClick={toggle} className="btn btn-light">Anuluj</button>
+          </div>
+        </div>
+      </Modal> 
     </div>
   )
 }

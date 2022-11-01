@@ -85,7 +85,7 @@ const renderBossOrEmployeeForm = () => {
       <select
       value={company}
       onChange={e => setCompany(e.target.value)} className="form-select" aria-label="Default select example">
-        <option>Wybierz firmę</option>
+        <option value='' >Wybierz firmę</option>
         {companies.map(firm => (
           <option key={firm._id} value={firm._id}>{firm.companyName}</option>
         ))}
@@ -123,6 +123,7 @@ const renderForm = () => (
         type="submit"
         gradient="blue"
         rounded
+        disabled={company === ''}
         className="btn-block z-depth-1a"
       >
       Zarejestruj

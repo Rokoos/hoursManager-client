@@ -19,9 +19,8 @@ export  const fetchAdmin = (userId, token) => {
      },
 
  })
- .then(response => {
-     return response.json()
- }) 
+ .then(response => response.json()) 
+ .catch(error => console.log(error))
 }
 
 
@@ -36,9 +35,8 @@ export const fetchUsers = (userId, token) =>{
     },
 
 })
-.then(response => {
-    return response.json()
-}) 
+.then(response => response.json()) 
+.catch(error => console.log(error))
 }
 
 export  const getEmployee = (userId, token, id) => fetch(`${process.env.REACT_APP_API}/admin/${userId}/user/${id}`, {
@@ -49,9 +47,36 @@ export  const getEmployee = (userId, token, id) => fetch(`${process.env.REACT_AP
         Authorization: `Bearer ${token}`
     },
 })
-.then(response => {
-    return response.json()
-}) 
+.then(response => response.json()) 
+.catch(error => console.log(error))
+
+
+
+export  const deleteUserByAdmin = (userId, token, id) => fetch(`${process.env.REACT_APP_API}/admin/${userId}/user/${id}`, {
+    method:'DELETE',
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    },
+})
+.then(response => response.json()) 
+.catch(error => console.log(error))
+
+
+
+export  const deleteAdmin = (userId, token) => fetch(`${process.env.REACT_APP_API}/admin/${userId}`, {
+    method:'DELETE',
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+    },
+})
+.then(response => response.json()) 
+.catch(error => console.log(error))
+
+
 
 export  const getEmployeeWeeksAndMonths = (userId, token, id, year) => fetch(`${process.env.REACT_APP_API}/admin/${userId}/user/${id}/${year}`, {
     method:'GET',
@@ -61,9 +86,8 @@ export  const getEmployeeWeeksAndMonths = (userId, token, id, year) => fetch(`${
         Authorization: `Bearer ${token}`
     },
 })
-.then(response => {
-    return response.json()
-}) 
+.then(response => response.json()) 
+.catch(error => console.log(error))
 
 
 
