@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import {giveDays} from '../utils'
 import Spinner from './Spinner'
 import Modal from "./Modal"
+import DeleteUser from './Auth/DeleteUser'
 
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
@@ -108,7 +109,7 @@ const checkHoursNumber = () => {
 
 
 const renderWeek = () => (
-  <div className=" d-flex mt-3 mb-3 flex-column">
+  <div className=" d-flex mt-3 flex-column ">
     <h4 >Tydzień {week}</h4>
 
          <div className='d-flex justify-content-evenly align-items-center mb-3'>
@@ -214,21 +215,24 @@ if(loading){
           <hr/>
           </Fragment>
         )}
-        <button 
-        onClick={() => setAddHours(true)}
-        className="btn btn-primary mb-5">Dodaj godziny</button>
-        {addHours && (
-          <div style={{fontSize: '13px'}} className=" d-flex flex-column  justify-content-center align-items-center mb-5">
-          <h5 className='p-2 bg-dark header-main_color'  >Kliknij numer tygodnia</h5>
-          <Calendar
-          onChange={onChange}
-          value={date}
-          showWeekNumbers
-          onClickWeekNumber={onClickWeekNumber}
-          />
-          {values.length  > 0 && renderWeek()}
-        </div>
-        )}
+          <div className='d-flex flex-column align-items-center'>
+            <button 
+            onClick={() => setAddHours(true)}
+            className="btn btn-primary " style={{width:'264px'}} >Dodaj godziny</button>
+            {addHours && (
+              <div style={{fontSize: '13px'}} className=" d-flex flex-column  justify-content-center align-items-center mb-3">
+              <h5 className='p-2 mt-3 bg-dark header-main_color'  >Kliknij numer tygodnia</h5>
+              <Calendar
+              onChange={onChange}
+              value={date}
+              showWeekNumbers
+              onClickWeekNumber={onClickWeekNumber}
+              />
+              {values.length  > 0 && renderWeek()}
+            </div>
+            )}
+            <DeleteUser user={user} />
+          </div>
       </div>
 
         <Modal

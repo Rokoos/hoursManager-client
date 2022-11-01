@@ -1,39 +1,11 @@
-import { MDBNavLink} from 'mdbreact'
-
-export const   errorMessage = (error) => (
-  <h6 className="alert alert-danger">
-  {error}
-  </h6>
-)
-
-export const  successMessage = () =>(
-  <h6 className="alert alert-info" >Account has been created! Please <MDBNavLink to="/signin">Sign in</MDBNavLink></h6>
-)
-
-export const firms = [
-  {
-    id: 1,
-    name: "Manufaktura Projekt",
-    code: 11111
-  },
-  {
-    id: 2,
-    name: "Bajkowe Ogrody",
-    code: 22222
-  },
-  
-]
-
 
 export const giveDays = timestamp => {
   let days = [timestamp]
   let ts = timestamp
   for(let i = 1; i < 6;i++){
     ts +=  (60*60*24*1000)
-    // console.log('ts', new Date(ts))
     days.push(ts)
   }
-  // console.log('days', days)
   return days
 }
 

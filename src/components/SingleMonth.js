@@ -21,7 +21,6 @@ const SingleMonth = ({month, userId, year}) => {
       if(res.error) {
         console.log('res.error', res.error)
       }
-  
       setSingleMonth(res.month)
       setTotalHours(res.total)
     })
